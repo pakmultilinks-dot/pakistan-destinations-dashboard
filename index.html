@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pakistan Destinations Data Analysis</title>
+  <meta name="description" content="Data dashboard for 24 of Pakistan's most-visited destinations: visitor figures, seasonality, altitude and accommodation, from public sources.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Travel.pk data analysis</p>
+      <h1>Pakistan Destinations Data Analysis</h1>
+      <p class="subtitle">24 destinations in all six regions, with visitor figures, seasonality, altitude and accommodation, all from public sources. Data checked 17 Nov 2026.</p>
+      <p class="meta">Source workbook: <a href="https://docs.google.com/spreadsheets/d/1neE_90jI32ZKyMF3WSHnEll96mLAj4cwEd0Gp7UZiT4/edit?usp=sharing">Travel.pk, Pakistan Destinations Data Analysis (Google Sheet)</a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="kpis" aria-label="Key figures">
+      <div class="kpi"><span class="kpi-num">24</span><span class="kpi-label">Destinations analysed</span></div>
+      <div class="kpi"><span class="kpi-num">6</span><span class="kpi-label">Regions covered</span></div>
+      <div class="kpi"><span class="kpi-num">482,617</span><span class="kpi-label">GB domestic tourists, Jan-Jun 2026</span></div>
+      <div class="kpi"><span class="kpi-num">1.9m</span><span class="kpi-label">International arrivals, 2018</span></div>
+      <div class="kpi"><span class="kpi-num">9.3m</span><span class="kpi-label">KP tourists, May-Jul 2024</span></div>
+      <div class="kpi"><span class="kpi-num">41.6%</span><span class="kpi-label">Of GB H1 2026 tourists came in June alone</span></div>
+    </section>
+
+    <section class="card summary" aria-label="Summary">
+      <h2>What the data shows</h2>
+      <p>This dashboard covers 24 of Pakistan's most-visited destinations in all six regions: 8 in Gilgit-Baltistan, 8 in Khyber Pakhtunkhwa, 3 in Punjab, 2 in Azad Jammu and Kashmir, 2 in Balochistan and 1 in Sindh. For each one it records region, type, altitude, best season, peak months, a typical stay, whatever visitor figure is actually published, and the Booking.com property count. Every figure comes from a public source listed below; where no figure is published, the table says so instead of estimating one.</p>
+      <p><strong>Visitors:</strong> international arrivals grew from about 383,000 in 1993 to 1.9 million in 2018, with a sharp dip to 565,212 in 2013 and a recovery after 2015. Domestic tourism is far larger: about 50 million domestic trips were estimated in 2014, and Khyber Pakhtunkhwa alone recorded 9.3 million tourists from 1 May to 31 July 2024. The most detailed official data is for Gilgit-Baltistan: 482,617 domestic and 13,715 foreign tourists in January-June 2026, against 989,793 domestic and 24,139 foreign in all of 2024.</p>
+      <p><strong>Seasonality:</strong> tourism in the north is strongly seasonal. In Gilgit-Baltistan, June alone brought 200,680 of the 482,617 domestic tourists in January-June 2026 (41.6%), while January brought only 18,400 (3.8%). Diamer district (Fairy Meadows and the Babusar route) recorded the most visitors in that period (127,044), followed by Skardu (97,688) and Hunza (86,975). The pattern matches the best seasons in the dataset: May to October for the northern valleys, June to September for the high meadows, and November to February for the lowland cities and Gorakh Hill.</p>
+      <p><strong>Accommodation:</strong> supply is very uneven. On Booking.com (17 Nov 2026) Lahore lists 1,208 properties, Murree 174, Skardu 93, Hunza 38, Naran 28 and Gilgit 26. These counts include nearby properties and measure listings, not rooms or beds. For 18 of the 24 destinations no Booking.com count was collected, and no tourism authority publishes hotel or room counts per destination, so the table records that gap plainly.</p>
+      <p><strong>What this means for Travel.pk:</strong> push northern packages for June to September, when demand peaks; sell the cities (Lahore, Taxila) and Gorakh Hill for the winter months, when the north is quiet; and treat Skardu and Hunza as the most bookable northern hubs, since they combine the highest district visitor counts with the most listed accommodation outside Lahore and Murree.</p>
+      <h3>Key findings</h3>
+      <ul>
+        <li>International arrivals rose from 383,000 (1993) to 1,900,035 (2018), with a dip to 565,212 in 2013.</li>
+        <li>In GB, June 2026 had 10.9 times January's domestic tourists (200,680 vs 18,400).</li>
+        <li>Diamer district led GB in Jan-Jun 2026 with 127,044 domestic tourists.</li>
+        <li>The UK was the largest source of foreign arrivals in 2024 (503,383), ahead of Afghanistan (461,199) and the USA (260,406).</li>
+        <li>Booking.com lists 1,208 properties in Lahore but only 26 in Gilgit and 38 in Hunza.</li>
+      </ul>
+      <h3>Limitations, read before reusing these figures</h3>
+      <ul>
+        <li>No official visitor count for a single destination is published for any of the 24; the best available are district totals for GB and a provincial total for KP.</li>
+        <li>Booking.com counts cover only 6 destinations, count listings (not rooms or beds) and include nearby properties.</li>
+        <li>Stay lengths are itinerary norms, not measured data; no length-of-stay statistics are published per destination.</li>
+        <li>The GB 2026 figures cover January to June only; the full year is not yet published.</li>
+      </ul>
+    </section>
+
+    <section aria-label="Charts">
+      <h2 class="section-title">Charts</h2>
+      <div class="charts">
+        <div class="card chart-card"><h3>GB domestic tourists by month, Jan-Jun 2026</h3><canvas id="chart-months"></canvas><p class="chart-note">Source: GB Tourism Department, Tourist Inflow 2026.</p></div>
+        <div class="card chart-card"><h3>GB domestic tourists by district, Jan-Jun 2026</h3><canvas id="chart-districts"></canvas><p class="chart-note">Source: GB Tourism Department, Tourist Inflow 2026.</p></div>
+        <div class="card chart-card"><h3>International tourist arrivals to Pakistan, 1993-2018</h3><canvas id="chart-arrivals"></canvas><p class="chart-note">Source: World Bank, via Wikipedia, Tourism in Pakistan. No figure published for 1999.</p></div>
+        <div class="card chart-card"><h3>Booking.com properties by destination, 17 Nov 2026</h3><canvas id="chart-booking"></canvas><p class="chart-note">Source: Booking.com search results. Counts include nearby properties.</p></div>
+        <div class="card chart-card"><h3>Destinations by region</h3><canvas id="chart-regions"></canvas><p class="chart-note">24 destinations in the dataset, grouped by region.</p></div>
+        <div class="card chart-card"><h3>Altitude of the highest destinations (m)</h3><canvas id="chart-altitude"></canvas><p class="chart-note">Source: Wikipedia destination articles.</p></div>
+        <div class="card chart-card"><h3>Foreign arrivals by nationality, 2024</h3><canvas id="chart-nationality"></canvas><p class="chart-note">Source: Wikipedia, Tourism in Pakistan.</p></div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Dataset">
+      <h2>The 24 destinations</h2>
+      <p class="table-note">Visitor figures are district or provincial totals where no single-destination count is published. Typical stay is a planning norm from standard tour itineraries, not a measured statistic.</p>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-region="All">All regions</button>
+        <button class="filter-btn" data-region="Gilgit-Baltistan">Gilgit-Baltistan</button>
+        <button class="filter-btn" data-region="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</button>
+        <button class="filter-btn" data-region="Punjab">Punjab</button>
+        <button class="filter-btn" data-region="Azad Jammu and Kashmir">Azad Jammu and Kashmir</button>
+        <button class="filter-btn" data-region="Balochistan">Balochistan</button>
+        <button class="filter-btn" data-region="Sindh">Sindh</button>
+      </div>
+      <div class="table-scroll">
+        <table id="dest-table">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Region</th>
+              <th>Type</th>
+              <th>Altitude (m)</th>
+              <th>Best season</th>
+              <th>Peak months</th>
+              <th>Typical stay (days)</th>
+              <th>Visitors, published figure</th>
+              <th>Booking.com properties</th>
+            </tr>
+          </thead>
+          <tbody id="dest-body"></tbody>
+        </table>
+      </div>
+      <p class="table-note" id="row-count"></p>
+    </section>
+
+    <section class="card" aria-label="Sources">
+      <h2>Sources</h2>
+      <p>All figures accessed 17 Nov 2026.</p>
+      <ol class="sources">
+        <li><strong>S1, Wikipedia, Tourism in Pakistan.</strong> International arrivals 1993-2018; arrivals by nationality 2019-2024; domestic tourism estimate; 1.9m visitors in 2018. <a href="https://en.wikipedia.org/wiki/Tourism_in_Pakistan">en.wikipedia.org/wiki/Tourism_in_Pakistan</a></li>
+        <li><strong>S2, GB Tourism Department, Tourist Inflow 2026.</strong> GB inflow by year 2018-2026; domestic tourists by district and month Jan-Jun 2026; foreign tourists by month. <a href="https://visitgilgitbaltistan.gov.pk/pages/tourist-inflow">visitgilgitbaltistan.gov.pk/pages/tourist-inflow</a></li>
+        <li><strong>S3, Dawn, Record 9.3m tourists visited KP this summer, 7 Aug 2024.</strong> KP total 9.3m tourists, 1 May-31 Jul 2024. <a href="https://www.dawn.com/news/1850528">dawn.com/news/1850528</a></li>
+        <li><strong>S4, Booking.com search results.</strong> Property counts for Hunza, Skardu, Gilgit, Naran, Murree, Lahore, checked 17 Nov 2026. <a href="https://www.booking.com">booking.com</a></li>
+        <li><strong>S5, Wikipedia destination articles.</strong> Altitudes and best-season notes for all 24 destinations. <a href="https://en.wikipedia.org">en.wikipedia.org</a></li>
+        <li><strong>S6, Pamir Times, Baltistan 2024 tourist numbers, 7 Jan 2025.</strong> Baltistan 2024: 486,571 domestic and 21,862 international tourists. <a href="https://pamirtimes.net/2025/01/07/baltistan-welcomed-486571-domestic-and-21862-foreign-tourists-in-2024/">pamirtimes.net</a></li>
+        <li><strong>S7, UNESCO World Heritage List, Taxila.</strong> Taxila inscribed as a World Heritage Site in 1980. <a href="https://whc.unesco.org/en/list/139">whc.unesco.org/en/list/139</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Pakistan Destinations Data Analysis. Built for TechAbout task TPT-2026-03089. Data from the public sources listed above; figures are quoted as published, and gaps are stated plainly where no figure is published.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

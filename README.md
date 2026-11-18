@@ -38,6 +38,7 @@ then open http://localhost:8000
 ## How it was tested
 
 1. `node --check app.js` to confirm the JavaScript parses.
+2. `node tests/check-data.js` to run the 21 data checks: 24 destinations with unique names and all 9 fields, region counts (GB 8, KP 8, Punjab 3, AJK 2, Balochistan 2, Sindh 1), GB monthly and district series both summing to 482,617, international arrivals 383,000 in 1993 to 1,900,035 in 2018, all 7 chart canvases, dataset table, summary and sources sections, README, .env.example and .gitignore present, and no em dash in app.js or index.html.
 2. Served locally with `python3 -m http.server` and fetched the page with curl,
    confirming HTTP 200 and that the page contains the title, the 7 chart canvases,
    the dataset table and the sources section.

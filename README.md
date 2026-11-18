@@ -25,7 +25,8 @@ dashboard says so too; nothing is estimated or invented.
 ## Setup
 
 No build step and no backend. The page is plain HTML, CSS and JavaScript, with
-Chart.js loaded from the jsDelivr CDN.
+Chart.js 4.4.1 vendored in `vendor/chart.umd.min.js`, so the charts work offline
+with no CDN.
 
 Open `index.html` directly in a browser, or serve the folder locally:
 
@@ -46,8 +47,8 @@ then open http://localhost:8000
    GB monthly and district totals, the 1993-2018 arrivals series, Booking.com
    counts, region counts, altitudes, 2024 nationalities).
 4. After deploying to GitHub Pages, fetched the live URL with curl and confirmed
-   it returns HTTP 200 with the full page, and confirmed the Chart.js CDN script
-   it loads is reachable.
+   it returns HTTP 200 with the full page, and confirmed the vendored Chart.js
+   file it loads is served from the same site.
 5. Checked the whole repo for the em dash character and for any secret before
    pushing; none present.
 
@@ -62,5 +63,4 @@ then open http://localhost:8000
   statistics are published per destination.
 - The GB 2026 figures cover January to June only; the full year is not yet
   published.
-- Charts need internet access to load Chart.js from the CDN; the table, summary
-  and sources work offline.
+- Chart.js is vendored in the repo, so the charts work offline too.

@@ -79,9 +79,13 @@ check("sources section exists in index.html", /sources/i.test(indexHtml));
 // Repo completeness.
 check("README.md exists", fs.existsSync(path.join(root, "README.md")));
 check(".env.example exists", fs.existsSync(path.join(root, ".env.example")));
+check("Chart.js is vendored locally", fs.existsSync(path.join(root, "vendor", "chart.umd.min.js")));
+check("index.html loads the local Chart.js, not a CDN", indexHtml.includes('src="vendor/chart.umd.min.js"') && !indexHtml.includes("cdn.jsdelivr.net"));
 check(".gitignore exists", fs.existsSync(path.join(root, ".gitignore")));
 check("no em dash in app.js", !appJs.includes("\u2014"));
 check("no em dash in index.html", !indexHtml.includes("\u2014"));
+check("category axis is not number formatted (labels show names, not 0, 1, 2)",
+  !appJs.includes('y: { ticks: { callback: function (v) { return Number(v)')); 
 
 if (failures > 0) {
   console.log(failures + " check(s) failed.");

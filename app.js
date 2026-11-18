@@ -54,7 +54,7 @@ document.getElementById("filters").addEventListener("click", function (e) {
   renderTable(btn.dataset.region);
 });
 
-// Charts (Chart.js 4, loaded from CDN in index.html).
+// Charts (Chart.js 4, vendored in vendor/chart.umd.min.js).
 const GREEN = "#166534";
 const GREEN_LIGHT = "#22c55e";
 const TEAL = "#0d9488";
@@ -64,6 +64,10 @@ const BLUE = "#2563eb";
 const PALETTE = ["#166534", "#0d9488", "#2563eb", "#d97706", "#dc2626", "#7c3aed"];
 
 function barChart(id, labels, data, label, horizontal) {
+  // The value axis shows formatted numbers; the category axis shows the
+  // labels as given. Number formatting on the category axis would show
+  // 0, 1, 2 instead of the names, so it is only applied to the value axis.
+  const numberTicks = { ticks: { callback: function (v) { return Number(v).toLocaleString("en-US"); } } };
   return new Chart(document.getElementById(id), {
     type: "bar",
     data: { labels: labels, datasets: [{ label: label, data: data, backgroundColor: GREEN, borderRadius: 4 }] },
@@ -72,7 +76,7 @@ function barChart(id, labels, data, label, horizontal) {
       responsive: true,
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
-      scales: { x: { ticks: { callback: function (v) { return Number(v).toLocaleString("en-US"); } } }, y: { ticks: { callback: function (v) { return Number(v).toLocaleString("en-US"); } } } }
+      scales: horizontal ? { x: numberTicks, y: {} } : { x: {}, y: numberTicks }
     }
   });
 }
